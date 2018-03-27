@@ -1,0 +1,42 @@
+﻿@model PortalEscola.WEB.Models.Inscricao
+
+@{
+    ViewBag.Title = "Detalhes da inscrição";
+}
+
+<h2>Detalhes</h2>
+
+<div>
+    <h4>Inscricao</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Curso.NomeCurso)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Curso.NomeCurso)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estudante.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estudante.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Grau)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Grau)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.InscricaoId }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

@@ -1,0 +1,60 @@
+﻿@model PortalEscola.WEB.Models.Estudante
+
+@{
+    ViewBag.Title = "Detalhes do Estudante";
+}
+
+<h2>DETALHES DO ESTUDANTE</h2>
+
+<div>
+    <h4>Estudante</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sobrenome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sobrenome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInscricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInscricao)
+        </dd>
+
+    </dl>
+
+    <table class="table">
+        <tr>
+            <th>Nome do Curso</th>
+            <th>Grau</th>
+        </tr>
+        @foreach (var item in Model.Inscricoes)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Curso.NomeCurso)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grau)
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.EstudanteId }) |
+    @Html.ActionLink("Voltar", "Index")
+</p>

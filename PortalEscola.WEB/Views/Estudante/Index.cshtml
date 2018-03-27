@@ -1,0 +1,61 @@
+﻿@model PagedList.IPagedList<PortalEscola.WEB.Models.Estudante>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Estudantes";
+}
+
+<h2>Estudantes</h2>
+
+<p>
+    @Html.ActionLink("Criar cadastro", "Create")
+</p>
+@using (Html.BeginForm("Index", "Estudante", FormMethod.Get))
+{
+    <p>
+        Pesquisar pelo nome: @Html.TextBox("pesquisarPalavra", ViewBag.FiltroAtual as string)
+        <input type="submit" value="Pesquisar" />
+    </p>
+
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Nome", "Index", new { sorteioOrdem = ViewBag.ParamSorteioNome, filtroAtual = ViewBag.FiltroAtual })
+        </th>
+        <th>
+            Sobrenome
+        </th>
+        <th>
+            @Html.ActionLink("Data de Inscrição", "Index", new { sorteioOrdem = ViewBag.ParamSorteioData, filtroAtual = ViewBag.FiltroAtual })
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sobrenome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataInscricao)
+            </td>
+            <td>
+                @Html.ActionLink("Editar ", "Edit", new { id = item.EstudanteId }) |
+                @Html.ActionLink("Detalhes", "Details", new { id = item.EstudanteId }) |
+                @Html.ActionLink("Deletar", "Delete", new { id = item.EstudanteId })
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+Página @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index",
+    new { page, sorteioOrdem = ViewBag.SorteioAtual, filtroAtual = ViewBag.SorteioAtual }))

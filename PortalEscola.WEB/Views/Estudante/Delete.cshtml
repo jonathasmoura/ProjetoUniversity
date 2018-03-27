@@ -1,0 +1,49 @@
+﻿@model PortalEscola.WEB.Models.Estudante
+
+@{
+    ViewBag.Title = "Excluir Estudante";
+}
+
+<h2>Excluir Estudante</h2>
+<p class="error">@ViewBag.ErrorMessage</p>
+<h3>Você tem certeza que deseja excluir este registro?</h3>
+<div>
+    <h4>Estudante</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sobrenome)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sobrenome)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DataInscricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DataInscricao)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Excluir" class="btn btn-default" /> |
+            @Html.ActionLink("Voltar", "Index")
+        </div>
+    }
+</div>

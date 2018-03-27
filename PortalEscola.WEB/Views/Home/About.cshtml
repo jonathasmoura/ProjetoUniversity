@@ -1,0 +1,30 @@
+﻿@model IEnumerable<PortalEscola.WEB.ViewModels.GrupoDataInscricao>
+
+@{
+    ViewBag.Title = "Estatísticas dos Estudantes";
+}
+<h2>Estatísticas dos Estudantes</h2>
+<table>
+    <tr>
+        <th>
+            Data de Inscrição
+        </th>
+        <th>
+            Estudantes
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(itemModelo => item.DataInscricao)
+            </td>
+            <td>
+                @item.QuantidadeEstudantes
+            </td>
+        </tr>
+    }
+</table>
+
+<p>Use esta área para informações adicionais.</p>

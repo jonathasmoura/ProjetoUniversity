@@ -1,0 +1,40 @@
+﻿@model IEnumerable<PortalEscola.WEB.Models.Curso>
+
+@{
+    ViewBag.Title = "Cadastrar Curso";
+}
+
+<h2>Curso</h2>
+
+<p>
+    @Html.ActionLink("Cadastrar novo curso", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NomeCurso)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Creditos)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCurso)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Creditos)
+            </td>
+            <td>
+                @Html.ActionLink("Editar curso", "Edit", new { id = item.CursoId }) |
+                @Html.ActionLink("Detalhes do curso", "Details", new { id = item.CursoId }) |
+                @Html.ActionLink("Excluir curso", "Delete", new { id = item.CursoId })
+            </td>
+        </tr>
+    }
+
+</table>
