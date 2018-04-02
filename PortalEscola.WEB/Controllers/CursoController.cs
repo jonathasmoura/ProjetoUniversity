@@ -16,9 +16,40 @@ namespace PortalEscola.WEB.Controllers
         private PortalEscolaContexto db = new PortalEscolaContexto();
 
         // GET: Curso
-        public ActionResult Index()
+        public ActionResult Index(string palavraNomeCredit, string pesqPalavra)
         {
-            return View(db.Cursos.ToList());
+
+            ViewBag.NomeCursoSel = String.IsNullOrEmpty(palavraNomeCredit) ? "nome_curso" : "";
+            ViewBag.CreditCursoSel = palavraNomeCredit == "Credit" ? "credit_desc" : "Credit";
+
+            var cursos = from c in db.Cursos
+                         select c;
+
+            if (!String.IsNullOrEmpty(pesqPalavra))
+            {
+                cursos = cursos.Where(c => c.NomeCurso.Contains(pesqPalavra));
+            }
+
+            switch (palavraNomeCredit)
+            {
+                case "nome_curso":
+                    cursos = cursos.OrderByDescending(c => c.NomeCurso);
+                    break;
+
+                case "Credit":
+                    cursos = cursos.OrderBy(c => c.Creditos);
+                    break;
+
+                case "credit_desc":
+                    cursos = cursos.OrderByDescending(c => c.Creditos);
+                    break;
+
+                default:
+                    cursos = cursos.OrderBy(c => c.NomeCurso);
+                    break;
+            }
+
+            return View(cursos.ToList());
         }
 
         // GET: Curso/Details/5
@@ -51,7 +82,7 @@ namespace PortalEscola.WEB.Controllers
         {
             if (ModelState.IsValid)
             {
-                
+
 
                 db.Cursos.Add(curso);
                 db.SaveChanges();

@@ -13,11 +13,19 @@ namespace PortalEscola.WEB.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int CursoId { get; set; }
 
+
         [Display(Name = "Nome do Curso")]
         public string NomeCurso { get; set; }
         public int Creditos { get; set; }
 
         public virtual ICollection<Inscricao> Inscricoes { get; set; }
-
+        /*
+                public Curso(int cId, string nome, int creditos)
+                {
+                    CursoId = cId;
+                    NomeCurso = nome;
+                    Creditos = creditos;
+                }
+                */
     }
 }

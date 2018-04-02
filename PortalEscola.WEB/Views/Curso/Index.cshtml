@@ -9,13 +9,20 @@
 <p>
     @Html.ActionLink("Cadastrar novo curso", "Create")
 </p>
+
+@using (Html.BeginForm())
+{
+    <p>Encontre  curso pelo nome: @Html.TextBox("pesqPalavra")
+    <input type="submit" value="Pesquisar" />
+    </p>
+}
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.NomeCurso)
+            @Html.ActionLink("Nome do Curso", "Index", new { palavraNomeCredit = ViewBag.NomeCursoSel })
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Creditos)
+            @Html.ActionLink("Creditos", "Index", new { palavraNomeCredit = ViewBag.CreditCursoSel })
         </th>
         <th></th>
     </tr>

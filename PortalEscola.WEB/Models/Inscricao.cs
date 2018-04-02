@@ -15,18 +15,30 @@ namespace PortalEscola.WEB.Models
 
     public class Inscricao
     {
-
         public int InscricaoId { get; set; }
         public int CursoId { get; set; }
         public int EstudanteId { get; set; }
         public GRAU? Grau { get; set; }
 
         [ForeignKey("CursoId")]
-        [Display(Name ="Curso")]
+        [Display(Name = "Curso")]
         public virtual Curso Curso { get; set; }
 
         [ForeignKey("EstudanteId")]
-        [Display(Name ="Estudante")]
+        [Display(Name = "Estudante")]
         public virtual Estudante Estudante { get; set; }
+
+
+        /*
+        public Inscricao(int inscricaoId, int cursoId, int estudanteId, GRAU? grau)
+        {
+            InscricaoId = inscricaoId;
+            CursoId = cursoId;
+            EstudanteId = estudanteId;
+            Grau = grau;
+        }
+        */
+
+
     }
 }
